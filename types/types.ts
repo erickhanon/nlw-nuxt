@@ -16,4 +16,13 @@ export type Ad = {
   discord: string;
 }
 
+export type NewAd = {
+  name: string;
+  yearsPlaying: number;
+  discord: string;
+  weekDays: number[];
+  hourStart: string;
+  hourEnd: string;
+  useVoiceChannel: boolean;
+}
 
