@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-            <CreateAdDialog v-if="dialog" @fechaModal="dialog = false" :game="game" />
+            <CreateAdDialog v-if="dialog" @fechaModal="dialog = false" @updateAds="getAdInfo(game.id)" :game="game" />
             <v-img cover :src="game.bannerUrl"></v-img>
             <v-card-title>{{ game.title }}</v-card-title>
 
@@ -10,14 +10,17 @@
             <v-card-text>Anuncios Disponíveis: {{ game._count.ads }}</v-card-text>
 
             <v-card-text>
+            <CheckAdDialog v-if="dialog2" @fechaModal="dialog2 = false" :ad="ad" />
                 <v-chip-group column>
-                    <v-chip :key="game.id" v-for="ad in ads">
+                    <v-chip :key="game.id" v-for="ad in ads" height="auto" @click="checkAD(ad)">
                         <v-icon start 
                         :icon="ad.useVoiceChannel ?
                         'mdi-microphone' : 'mdi-microphone-off'"
                         :color="ad.useVoiceChannel ? 'green' : 'red'">
                         </v-icon>
+                        <p>
                         {{ ad.discord }}
+                        </p>
                     </v-chip>
                 </v-chip-group>
             </v-card-text>
@@ -53,6 +56,7 @@ export default {
         gameInfo: {} as Game,
         ads: [] as Array<Ad>,
         ad: {} as Ad,
+        dialog2: false as boolean,
         dialog: false as boolean,
     }),
 
@@ -72,6 +76,11 @@ export default {
                     this.ads = data;
                 }
             );
+        },
+
+        async checkAD(ad: Ad) {
+            this.dialog2 = true;
+            this.ad = ad;
         },
 
     },

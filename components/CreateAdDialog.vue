@@ -69,6 +69,8 @@ export default {
                 method: 'POST',
                 body: this.adInfo,
             }).then((data) => {
+                this.$emit('fechaModal')
+                this.$emit('updateAds')
                 console.log(data)
             })
 
