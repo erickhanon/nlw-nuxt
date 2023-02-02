@@ -3,16 +3,19 @@
       <v-app>
         <v-navigation-drawer v-model="drawer" expand-on-hover rail>
             <v-list>
-                <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
-                    subtitle="sandra_a88@gmailcom"></v-list-item>
+                <v-list-item prepend-avatar="https://avatars.githubusercontent.com/u/50847394?v=4" title="Erick Marques"
+                    subtitle="Front-End Developer"></v-list-item>
             </v-list>
 
             <v-divider></v-divider>
 
             <v-list density="compact" nav>
-                <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
-                <v-list-item prepend-icon="mdi-account-multiple" title="Shared with me" value="shared"></v-list-item>
-                <v-list-item prepend-icon="mdi-star" title="Starred" value="starred"></v-list-item>
+                <NuxtLink to="/" style="text-decoration: none; color: inherit;">
+                <v-list-item prepend-icon="mdi-home" title="Home" value="home"></v-list-item>
+                </NuxtLink>
+                <NuxtLink to="/about" style="text-decoration: none; color: inherit;">
+                <v-list-item prepend-icon="mdi-star" title="About Me" value="about"></v-list-item>
+                </NuxtLink>
             </v-list>
         </v-navigation-drawer>
         <NuxtPage />
